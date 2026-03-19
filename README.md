@@ -243,12 +243,9 @@ Vishwakarma Institute of Technology, Pune
 
 ---
 
-## 👨‍💻 Authors
+## 👨‍💻 Author
 
 * Piyush Sangore
-* Abdul Sheikh
-* Akash Shejul
-* Shyamsundar More
 
 ---
 
