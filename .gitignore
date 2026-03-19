@@ -1,0 +1,5 @@
+venv/
+assets/
+static/Job_Description
+static/uploaded_resumes
+__pycache__
