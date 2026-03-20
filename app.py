@@ -44,7 +44,7 @@ flow = Flow.from_client_secrets_file(
 UPLOAD_FOLDER = 'static/uploaded_resumes'
 app.config['UPLOAD_FOLDER']=UPLOAD_FOLDER
 
-app.config['MONGO_URI']= 'mongodb+srv://admin:admin@cluster0.ily08sy.mongodb.net/ResumeRanking'
+app.config['MONGO_URI']= 'YOUR_MONGO_URI'
 
 
 mongo.init_app(app)
