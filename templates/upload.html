@@ -1,0 +1,62 @@
+<!-- templates/upload.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h3 class="card-title mb-3">Upload Resume (Student)</h3>
+          <form id="uploadForm" method="post" action="{{ url_for('upload_resume') }}" enctype="multipart/form-data" novalidate>
+            <div class="mb-3">
+              <label for="candidate_name" class="form-label">Full Name <span class="text-danger">*</span></label>
+              <input required type="text" class="form-control" id="candidate_name" name="candidate_name" placeholder="Your full name">
+            </div>
+
+            <div class="mb-3">
+              <label for="candidate_email" class="form-label">Email <span class="text-danger">*</span></label>
+              <input required type="email" class="form-control" id="candidate_email" name="candidate_email" placeholder="name@example.com">
+            </div>
+
+            <div class="mb-3">
+              <label for="resume" class="form-label">Resume (PDF) <span class="text-danger">*</span></label>
+              <input required type="file" class="form-control" id="resume" name="resume" accept="application/pdf">
+            </div>
+
+            <div class="mb-3">
+              <label for="cgpa" class="form-label">CGPA (0 - 10)</label>
+              <input type="number" step="0.01" min="0" max="10" class="form-control" id="cgpa" name="cgpa" placeholder="eg. 8.5">
+            </div>
+
+            <div class="mb-3">
+              <label for="user_id" class="form-label">User ID (optional)</label>
+              <input type="text" class="form-control" id="user_id" name="user_id" placeholder="Existing user id (optional)">
+            </div>
+
+            <button id="submitBtn" type="submit" class="btn btn-primary">Upload Resume</button>
+            <a href="{{ url_for('index') }}" class="btn btn-secondary">Cancel</a>
+          </form>
+        </div>
+      </div>
+      <small class="text-muted d-block mt-2">Tip: Enter your name & email — they will be shown in company ranking and CSV export.</small>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Simple client-side validation
+  (function(){
+    const form = document.getElementById('uploadForm');
+    form.addEventListener('submit', function(e){
+      if (!form.checkValidity()) {
+        e.preventDefault();
+        e.stopPropagation();
+        form.classList.add('was-validated');
+        return false;
+      }
+      return true;
+    }, false);
+  })();
+</script>
+{% endblock %}

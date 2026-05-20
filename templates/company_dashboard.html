@@ -1,0 +1,68 @@
+<!-- templates/company_dashboard.html -->
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-8">
+      <h3 class="mb-3">Post a Job</h3>
+      <div class="card shadow-sm mb-4">
+        <div class="card-body">
+          <form id="jobForm" method="post" action="{{ url_for('company_dashboard') }}" enctype="multipart/form-data" novalidate>
+            <div class="mb-3">
+              <label for="job_profile" class="form-label">Job Profile <span class="text-danger">*</span></label>
+              <input required type="text" class="form-control" id="job_profile" name="job_profile" placeholder="e.g. Python Developer">
+            </div>
+            <div class="mb-3">
+              <label for="job_file" class="form-label">Job Description (PDF) — optional</label>
+              <input type="file" class="form-control" id="job_file" name="job_file" accept="application/pdf">
+            </div>
+            <button type="submit" class="btn btn-success">Post Job</button>
+          </form>
+        </div>
+      </div>
+
+      <h4 class="mb-3">Existing Jobs</h4>
+      <div class="list-group">
+        {% for job in jobs %}
+        <div class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <strong>{{ job.Job_Profile or "Unnamed Job" }}</strong><br>
+            <small class="text-muted">ID: {{ job._id }}</small>
+          </div>
+          <div>
+            <a class="btn btn-sm btn-primary" href="{{ url_for('ranking.compute_ranking', job_id=job._id) }}">Compute Ranking</a>
+          </div>
+        </div>
+        {% else %}
+        <div class="list-group-item">No jobs posted yet.</div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5>Help</h5>
+          <p class="small">Make Job Profile descriptive. Upload a JD PDF if you want a text match. All fields in this form are mandatory where marked.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // client side validation
+  (function(){
+    const form = document.getElementById('jobForm');
+    form.addEventListener('submit', function(e){
+      if (!form.checkValidity()) {
+        e.preventDefault();
+        e.stopPropagation();
+        form.classList.add('was-validated');
+        return false;
+      }
+      return true;
+    }, false);
+  })();
+</script>
+{% endblock %}

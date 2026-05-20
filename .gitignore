@@ -1,0 +1,22 @@
+# Virtual environment
+venv/
+
+# Assets (optional)
+assets/
+
+# Uploaded user files
+static/Job_Description/
+static/uploaded_resumes/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Secrets (VERY IMPORTANT)
+client_secret.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+.env
